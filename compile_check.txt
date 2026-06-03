@@ -1,0 +1,163 @@
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_naive.cpp -o heat2d_explicit_omp_naive
+returncode=0
+
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_naive_nofs.cpp -o heat2d_explicit_omp_naive_nofs
+returncode=0
+
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_busywait_nobarrier.cpp -o heat2d_explicit_omp_busywait_nobarrier
+returncode=0
+
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_busywait_nobarrier_nofs.cpp -o heat2d_explicit_omp_busywait_nobarrier_nofs
+returncode=0
+
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_sem_nobarrier.cpp -o heat2d_explicit_omp_sem_nobarrier
+returncode=0
+
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_sem_nobarrier_nofs.cpp -o heat2d_explicit_omp_sem_nobarrier_nofs
+returncode=0
+
+$ g++ -O3 -std=c++17 -Wall -Wextra -Wshadow -Wundef -Wno-unused-parameter -g -fno-omit-frame-pointer -fno-optimize-sibling-calls -fopenmp heat2d_explicit_omp_mpilike.cpp -o heat2d_explicit_omp_mpilike
+returncode=0
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_naive
+returncode=0
+STDOUT summary:
+Variant : omp_naive
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 0.00024785399999999999 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_naive_nofs
+returncode=0
+STDOUT summary:
+Variant : omp_naive_nofs
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 8.8190999999999996e-05 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_busywait_nobarrier
+returncode=0
+STDOUT summary:
+Variant : omp_busywait
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 0.0016648489999999999 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_busywait_nobarrier_nofs
+returncode=0
+STDOUT summary:
+Variant : omp_busywait_nofs
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 0.0010886719999999999 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_sem_nobarrier
+returncode=0
+STDOUT summary:
+Variant : omp_semaforos
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 0.00079740099999999999 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_sem_nobarrier_nofs
+returncode=0
+STDOUT summary:
+Variant : omp_semaforos_nofs
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 0.00052437399999999998 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+$ OMP_NUM_THREADS=4 ./heat2d_explicit_omp_mpilike
+returncode=0
+STDOUT summary:
+Variant : omp_mpilike
+N : 64
+alpha : 0.10000000000000001
+T : 5
+TILE : 8
+dt : 0.00056689342403628109
+lambda : 0.22500000000000001
+final_time : 0.0028344671201814054
+L1_error : 7.6985425912218018e-07
+L2_error : 9.6524534798604731e-07
+Linf_error : 1.9599144838178262e-06
+Tempo : 0.00060911099999999996 s
+STDERR:
+
+libgomp: Error reading core/socket topology
+
+
+MPI compile not tested here: mpicxx not available in this environment.
+It is expected to compile on SDumont after module load openmpi/amd/5.0.
